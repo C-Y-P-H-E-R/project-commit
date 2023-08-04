@@ -1,24 +1,26 @@
 const mongoose=require("mongoose")
 
-mongoose.connect("mongodb://localhost:27017/LoginFormPractice")
-.then(()=>{
-    console.log('mongoose connected');
-})
-.catch((e)=>{
-    console.log('failed');
-})
+const url = "mongodb+srv://quasarkid123:0123456789@cluster0.n63bm9o.mongodb.net/?retryWrites=true&w=majority";
 
-const logInSchema=new mongoose.Schema({
-    name:{
-        type:String,
-        required:true
-    },
-    password:{
-        type:String,
-        required:true
-    }
-})
+mongoose.connect(url)
+    .then( () => {
+        console.log('Connected to database ')
+    })
+    .catch( (err) => {
+        console.error(`Error connecting to the database. \n${err}`);
+    })
 
-const LogInCollection=new mongoose.model('LogInCollection',logInSchema)
-
-module.exports=LogInCollection
+    const logInSchema=new mongoose.Schema({
+        name:{
+            type:String,
+            required:true
+        },
+        password:{
+            type:String,
+            required:true
+        }
+    })
+    
+    const LogInCollection=new mongoose.model('LogInCollection',logInSchema)
+    
+    module.exports=LogInCollection
